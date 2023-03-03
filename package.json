@@ -1,0 +1,22 @@
+{
+  "name": "scriptingclass",
+  "version": "1.0.0",
+  "description": "an airdrop smart contract that uses merkle tree and csv files with a script that reads from the the merkle tree and csv files.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Oluwadunni Rachael",
+  "license": "ISC",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^2.0.2",
+    "hardhat": "^2.13.0"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.8.2",
+    "@openzeppelin/merkle-tree": "^1.0.2",
+    "csv-parser": "^3.0.0",
+    "dotenv": "^16.0.3",
+    "merkletreejs": "^0.3.9"
+  }
+}
