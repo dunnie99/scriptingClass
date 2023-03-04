@@ -62,7 +62,7 @@ async function main() {
   console.log(`byteData is ${byteData}`);
   
   
-  const leaves = .map((item: any) => keccak256(JSON.stringify(item)));
+  const leaves = JSONList.map((item: any) => keccak256(JSON.stringify(item)));
   const CSVmerkleTree = new MerkleTree(leaves,keccak256,{sort:true});
 
   // console.log("generated merkle root is", CSVmerkleTree.getRoot().toString("hex"));
@@ -119,46 +119,7 @@ async function main() {
 
 
 
-}
-// interface claimersAddress {
-//   address: string;
-//   amount: number;
-// }
-// async function main() {
-//   //contractAddress = ""
-//   const readFile = fs.readFileSync('claimers.csv', 'utf-8');
-
-//   const claimersParser = csvParse({
-  
-//   });
-
-//   const addresses: claimersAddress[] = [];
-//   claimersParser.on('readable', ()=>{
-//     let list;
-//     while((list=claimersParser.read())){
-//       const address: claimersAddress = {
-//         address: list.address,
-//         amount: parseInt(list.amount),
-//       };
-//       addresses.push(address);
-
-//     }
-//   });
-
-//   claimersParser.on('end', () => {
-//     console.log(`Parsed ${addresses.length} Ethereum addresses:`);
-//     addresses.forEach((address) => {
-//       console.log(`Address: ${address.address}, Amount: ${address.amount} CSR`);
-//     });
-//   });
-
-//   //readFile.pipe(claimersParser);
-
-
-// }
-
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
+  }
 main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
