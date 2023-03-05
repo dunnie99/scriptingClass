@@ -1,13 +1,16 @@
 import { ethers } from "hardhat";
-import * as fs from "fs";
-import csv from 'csv-parser';
+import * as fs from "fs"; 
+import * as path from 'path';
 import { StandardMerkleTree } from "@openzeppelin/merkle-tree";
 import {keccak256} from "ethers/lib/utils";
 import dotenv from "dotenv";
-import csvParser from "csv-parser";
-import MerkleTree from "merkletreejs";
+import { parse } from 'csv-parse';
 dotenv.config();
 
+type data ={
+  Address: string;
+  Amount: number;
+}
 
 
 
@@ -25,21 +28,22 @@ async function main() {
   const csvFile = fs.readFileSync("claimers.csv", "utf-8");
   const claimersCsv = csvFile.split("\n").splice(1);
   console.log(`your csv is ${claimersCsv}`);
+  const headers = ['Address', 'Amount'];
   
-  const csvfrom = "claimers.csv";
   const jsonto = "claimers.json";
 
   const output: any[] =[];
-  fs.createReadStream(csvfrom)
-  .pipe(csv())
-  .on('data', (data) => {
-    output.push(data);
-  })
-  .on('end', () => {
-    fs.writeFile(jsonto, JSON.stringify(output, null, 2), (err) => {
-      if (err) throw err;
-      console.log('CSV to JSON Conversion completed successfully');
-    });
+  parse(csvFile, {
+    delimiter: ',',
+    columns: headers,
+  }, (error, result
+    : data[]
+    ) => {
+      if (error){
+        console.error(error);
+      }
+      const jsonObj = JSON.stringify(result);
+      fs.writeFileSync(jsonto, jsonObj);  
   });
 
 

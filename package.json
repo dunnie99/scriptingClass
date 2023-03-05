@@ -15,6 +15,7 @@
   "dependencies": {
     "@openzeppelin/contracts": "^4.8.2",
     "@openzeppelin/merkle-tree": "^1.0.2",
+    "csv-parse": "^5.3.6",
     "csv-parser": "^3.0.0",
     "dotenv": "^16.0.3",
     "merkletreejs": "^0.3.9"
