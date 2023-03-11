@@ -5,9 +5,10 @@ import { StandardMerkleTree } from "@openzeppelin/merkle-tree";
 import {keccak256} from "ethers/lib/utils";
 import dotenv from "dotenv";
 import { parse } from 'csv-parse';
+import { Address } from "wagmi";
 dotenv.config();
 
-type data ={
+type data = {
   Address: string;
   Amount: number;
 }
@@ -47,12 +48,21 @@ async function main() {
       }) 
   });
 
-  const merkleFile = fs.readFileSync(jsonto,"utf-8");
-  console.log(`merkleFile is ${merkleFile}`);
 
 
-  const tree = StandardMerkleTree.of(output, ['address', 'uint256']);
-  console.log(tree.root);
+  
+  //const finalOutput: any[] = output.slice(1,11);
+  if (output.length === 0) {
+    console.error("Error: No addresses and amounts found in CSV file.");
+    return;
+  }
+
+  // const merkleFile = fs.readFileSync(jsonto,"utf-8");
+  // console.log(`merkleFile is ${merkleFile}`);
+
+
+  // const tree = StandardMerkleTree.of(finalOutput, ['address', 'uint256']);
+  // console.log(tree.root);
   
 
 

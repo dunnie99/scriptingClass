@@ -13,13 +13,8 @@ contract CSRtoken is ERC20 {
         _name = name;
         _symbol = symbol;
         owner = msg.sender;
-
-        
 //3 000 000 000 000 000 000
-
     }
-
-
 
     function mint() public {
         require(msg.sender == owner, "Not owner");
@@ -34,6 +29,11 @@ contract CSRtoken is ERC20 {
     require( msg.value >= price * token , "Insufficient balance!!!");
    
      _transfer(owner, msg.sender, token * 1e18);
+
+    
+
+
+
 
     
     }
